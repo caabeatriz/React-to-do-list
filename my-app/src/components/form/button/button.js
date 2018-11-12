@@ -1,6 +1,7 @@
 import React from 'react'
-import './botao.css'
-function Botao (props){
+import './button.css'
+
+function Button (props){
     let classes= 'button'
     if(props.disabled){
         classes += ' button--disable'
@@ -14,4 +15,4 @@ function Botao (props){
     )
 }
 
-export default Botao
+export default Button

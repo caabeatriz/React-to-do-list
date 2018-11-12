@@ -1,5 +1,6 @@
 import React from 'react'
 import './form.css'
+import Button from './button'
 function Form (props){
     return(
         <form  action={props.action}>
@@ -13,4 +14,5 @@ function Form (props){
     )
 }
 
+Form.Button = Button
 export  default Form

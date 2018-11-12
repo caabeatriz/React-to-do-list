@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Label from './label';
-import Input from './input';
-import Link from './link';
-import Form from './form';
-import Botao from './botao'
+import Label from './components/form/label/label';
+import Input from './components/form/input/input';
+import Link from './components/form/link/link';
+import Form from './components/form/form';
+import Button from './components/form/button/button'
 
 import * as serviceWorker from './serviceWorker';
 const component = <Form title='Login' text='Entre com seu email e senha'>
@@ -13,9 +13,9 @@ const component = <Form title='Login' text='Entre com seu email e senha'>
     <Input id='email' type='text'/>
     
     <Label htmlFor='password'>Password</Label>
-    <Input id='password' type='text'/>
-    <Link> eu sou um botao</Link>
-    <Botao disabled >Enviar </Botao>
+    <Input id='password' type='text'/>   
+    <Button disabled >Enviar </Button>
+    <Link> Criar uma conta </Link>
 </Form>
 
 ReactDOM.render(component, document.getElementById('root'));
