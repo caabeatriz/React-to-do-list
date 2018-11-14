@@ -1,2 +1,3 @@
-import Botao from './button'
-export default Botao
+import Button from './button'
+
+export default Button

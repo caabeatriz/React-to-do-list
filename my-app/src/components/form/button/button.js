@@ -1,16 +1,16 @@
 import React from 'react'
 import './button.css'
 
-function Button (props){
-    let classes= 'button'
+function Button(props){
+    let classes = 'button'
+
     if(props.disabled){
-        classes += ' button--disable'
+        classes += ' button--disabled'
     }
 
-    return (
-        <button className = {classes}>
-        {props.children}
-
+    return(
+        <button disabled={props.disabled} className={classes}>
+            {props.children}
         </button>
     )
 }

@@ -10,7 +10,7 @@
     border-radius: 5px;
 }
 
-.button--disable {
+.button--disabled {
     color: gray;
     background: lightgrey;
     border-color: lightgrey;

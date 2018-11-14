@@ -1,15 +1,13 @@
 import React from 'react'
 import './link.css'
-function Link (props){
+
+function Link(props){
     return (
-    <a 
-    href={props.href}
-    id={props.id}
-    className="link"    
-    >
-        {props.children}
-    </a>
+        <a id={props.id} className='link' 
+        href={props.href}>
+            {props.children}
+        </a>
     )
 }
 
-export default Link
+export default Link;
