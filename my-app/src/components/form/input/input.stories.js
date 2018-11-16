@@ -5,5 +5,5 @@ import Input from './index'
 
 storiesOf('Components/Form/Input', module )
     .add('default', () => (
-        <Input type='text'/>
+        <Input type='text' placeholder='Placeholder here' />
     ))

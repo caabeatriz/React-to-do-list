@@ -1,26 +1,13 @@
 import React from 'react'
 import Form from '../../components/form'
 import Container from '../../components/container'
-
-// function Login(){
-//     return(
-//         <Container>
-//             <Form title='Login' text='Entre com Seu Email e Senha'>
-//                 <Form.Label htmlFor='email'>Email</Form.Label>
-//                 <Form.Input id='email' type='email' required/>
-//                 <Form.Label htmlFor='password'>Password</Form.Label>
-//                 <Form.Input id='password' type='password' minLength={6} required/>
-//                 <Form.Button disabled>Enviar</Form.Button>
-//                 <Form.Link href='/conta'>Criar uma Conta</Form.Link>
-//             </Form>
-//         </Container>
-//     )
-// }
+import {setUser} from '../../infra/localstorage'
 
 class Login extends React.Component {
     constructor(){
         super()
         this.state= { disabled : true }
+        // react.createref é para puxar outra função de outra página
         this.email = React.createRef()
         this.password = React.createRef()
     }
@@ -29,16 +16,34 @@ class Login extends React.Component {
         const InputEmail = this.email.current
         const inputPassword = this.password.current
 
+        
+
         if(InputEmail.hasError() || inputPassword.hasError()){
             this.setState ({disabled: true})
         }else {
             this.setState ({disabled: false})
         }
     }
+    handleSubmit = (e) => {
+        e.preventDefault()
+        console.log('this props', this.props)
+
+        const InputEmail = this.email.current
+        const inputPassword = this.password.current
+        const user = {
+            email : InputEmail.getValue(),
+            password : inputPassword.getValue()
+        }
+    
+    
+    // set user pega la em cima, verifica o usuario  e direciona na home 
+    setUser(user)
+        this.props.history.push('/')
+    }
     render(){
         return (
             <Container>
-                <Form title='Login' text='Entre com Seu Email e Senha'>
+                <Form title='Login' text='Entre com Seu Email e Senha' onSubmit = {this.handleSubmit}>
                     <Form.Label htmlFor='email'>Email</Form.Label>
                     <Form.Input id='email' ref={this.email} type='email' onChange={this.onDisabledButton} required/>
                     <Form.Label htmlFor='password'>Password</Form.Label>
