@@ -2,6 +2,7 @@ import React from 'react'
 import Form from '../../components/form'
 import Container from '../../components/container'
 import {setUser} from '../../infra/localstorage'
+import {loginUser} from '../../apis/login.api'
 
 class Login extends React.Component {
     constructor(){
@@ -27,7 +28,6 @@ class Login extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
         console.log('this props', this.props)
-
         const InputEmail = this.email.current
         const inputPassword = this.password.current
         const user = {
@@ -35,11 +35,19 @@ class Login extends React.Component {
             password : inputPassword.getValue()
         }
     
-    
+    loginUser(user)
+        .then((response) => {
+            setUser({email: user.email})
+            this.props.history.push('/')
+        
+        })
+
+        .catch((error)=> {
+            console.log(error)
+        })
+}
     // set user pega la em cima, verifica o usuario  e direciona na home 
-    setUser(user)
-        this.props.history.push('/')
-    }
+    
     render(){
         return (
             <Container>

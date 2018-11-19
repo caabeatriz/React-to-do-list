@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./menu.css"
+import {getUser} from '../../../infra/localstorage'
 
 
 class Menu extends React.Component {
@@ -8,6 +9,7 @@ class Menu extends React.Component {
         super ()
         // padrao é falso,só quando clicar ficara ao lado
         this.state = { open : false}
+        this.user = getUser()
     }
 
     // criad função para mudar o estado do botao
@@ -18,6 +20,7 @@ class Menu extends React.Component {
 
 
     render () {
+        console.log('hhelo render')
         let classesOfButton = ' menu__button'
         let classesOfOptions = ' menu__options'
 
@@ -27,6 +30,8 @@ class Menu extends React.Component {
             classesOfButton += ' menu__button--open'
             classesOfOptions += ' menu__options--open'
         }
+
+      
         return (
             <div>
                 <a className={classesOfButton} onClick={this.handleOpenOrClose}>
@@ -41,12 +46,16 @@ class Menu extends React.Component {
                     <Link to='/contato'> Contato </Link>                   
                 </li>
                 <li>
-                    <Link to='/login'>  Login </Link>          
+                    
+                    <a>  {this.user ? 'Sair' : 'Login'} </a>          
                    
                 </li>
             </ul>
             </div>
         )
+
+
+
     }
 }
 

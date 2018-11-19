@@ -1,6 +1,8 @@
-import React from 'react'
-import Form from '../../components/form'
-import Container from '../../components/container'
+import React from 'react';
+import Form from '../../components/form';
+import Container from '../../components/container';
+import { signUpUser } from '../../apis/signup.api';
+import {setUser} from '../../infra/localstorage';
 
 // function Signup(){
 //     return (
@@ -55,6 +57,33 @@ class Signup extends React.Component {
 
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        
+        const inputName = this.name.current
+        const InputEmail = this.email.current
+        const inputPhone = this.phone.current
+        const inputPassword = this.password.current
+        const user = {
+            name : inputName.getValue(),
+            login : InputEmail.getValue(),
+            phone : inputPhone.getValue(),
+            password : inputPassword.getValue()
+        }
+          
+    signUpUser(user)
+    .then((response) => {
+        setUser({email: user.email})
+        this.props.history.push('/')
+    
+    })
+
+    .catch((error)=> {
+        console.log(error)
+    })
+}
+    
+
     // handleChange(){
     //     const InputEmail = this.email.current
     //     const InputPassword = this.password.current
@@ -67,13 +96,12 @@ class Signup extends React.Component {
     //     }
         
 
-
-
+    
     
     render(){
         return (
             <Container>
-            <Form title='Faça Seu Cadastro' text='Preencha com Seus Dados'>
+            <Form title='Faça Seu Cadastro' text='Preencha com Seus Dados' onSubmit = {this.handleSubmit}>
                 <Form.Label htmlFor='name' >Nome:</Form.Label>
                 <Form.Input id='name' type='text' onChange={this.onDisabledButton}  ref={this.name} required />
                 <Form.Label htmlFor='email '>Email:</Form.Label>
